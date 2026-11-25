@@ -338,6 +338,15 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
   color:#7A5A00;font-size:11px;font-weight:900;display:grid;place-items:center;flex:0 0 auto;margin-top:1px;
   border:1px solid rgba(212,175,55,.5)}
 .ins-note{font-size:11px;color:var(--muted);background:#F5F8FD;border-radius:12px;padding:10px 12px;margin-top:10px;line-height:1.5}
+.img-bg{position:fixed;inset:0;background:rgba(4,12,30,.93);z-index:95;display:none;align-items:center;
+  justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.img-bg.open{display:flex}
+.img-bg img{max-width:100%;max-height:82vh;border-radius:18px;background:#fff;padding:12px;
+  box-shadow:0 24px 70px rgba(0,0,0,.55);animation:pop .28s cubic-bezier(.2,1.3,.5,1) both}
+.img-close{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:16px;width:40px;height:40px;
+  border-radius:50%;background:rgba(255,255,255,.18);color:#fff;display:grid;place-items:center;font-size:16px}
+.img-tip{position:absolute;bottom:calc(22px + var(--safe-b));left:0;right:0;text-align:center;color:#9FB6D8;
+  font-size:11px;font-weight:600;letter-spacing:.04em}
 .preview-note{position:fixed;left:50%;transform:translateX(-50%);top:0;width:100%;max-width:480px;z-index:95;
   background:#FFC72C;color:#3A2600;font-size:11px;font-weight:800;padding:9px 14px;text-align:center;line-height:1.35}
 .preview-note span{display:block;font-weight:600;font-size:10.5px;opacity:.85;margin-top:1px}
@@ -377,7 +386,7 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
       <div class="hero-badge">★ New Improved</div>
       <h1>Mine<br><em>Ultra Wash</em></h1>
       <p>Finest Detergent in India — tough stains, soft clothes.</p>
-      <img class="hero-pack pk" alt="Mine Ultra Wash">
+      <img class="hero-pack pk" alt="Mine Ultra Wash" onclick="openImage()" style="cursor:zoom-in">
       <div class="hero-strip">
         <span><b>1 kg</b> Pack</span><span class="dot"></span>
         <span><b>₹70</b> per pack</span><span class="dot"></span>
@@ -394,7 +403,7 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
 
     <div class="prod card" style="margin-top:12px">
       <div class="prod-top">
-        <div class="prod-img"><img class="pk" alt="Mine Ultra Wash 1 kg"></div>
+        <div class="prod-img" onclick="openImage()"><img class="pk" alt="Mine Ultra Wash 1 kg"></div>
         <div class="prod-info">
           <span class="chip">Premium Quality</span>
           <div class="prod-name">Mine Ultra Wash</div>
@@ -582,7 +591,7 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
       </div>
 
       <button class="btn btn-wa" style="width:100%;margin-bottom:12px" onclick="openWA('Namaste BM Group of India, mujhe Mine Ultra Wash ka wholesale / bag rate jaanna hai.')">Wholesale rate poochhein</button>
-      <div class="ver" id="verAbout">BM Group of India · v2.4.0</div>
+      <div class="ver" id="verAbout">BM Group of India · v2.6.0</div>
     </div>
   </section>
 
@@ -794,6 +803,14 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
       <div class="radio"></div>
     </div>
 
+    <div id="upiBox" style="display:none;margin:2px 0 4px">
+      <div style="background:#FFFDF4;border:1px dashed rgba(212,175,55,.55);border-radius:13px;padding:12px">
+        <div style="font-size:10px;font-weight:800;letter-spacing:.08em;color:#8A6A12">UPI PAYMENT</div>
+        <p style="font-size:11.5px;color:#42536B;margin:5px 0 10px;line-height:1.5">Delivery ke waqt UPI se payment kar sakte hain. Neeche button dabane par seedha UPI app khul jayega.</p>
+        <button class="btn btn-blue btn-sm" style="width:100%;height:40px" onclick="openUPIApp()">UPI app se payment karein</button>
+      </div>
+    </div>
+
     <button class="btn btn-primary" style="width:100%;margin-top:14px" onclick="placeOrder()">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
       Place Order · <span id="btnTotal">₹70</span>
@@ -857,6 +874,12 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
   </div>
 </div>
 
+<div class="img-bg" id="imgBg" onclick="if(event.target===this)closeImage()">
+  <button class="img-close" onclick="closeImage()">✕</button>
+  <img id="imgBig" alt="Mine Ultra Wash">
+  <div class="img-tip">Mine Ultra Wash · 1 kg pack</div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <div class="preview-note" id="previewNote" style="display:none">
@@ -882,8 +905,9 @@ var CONFIG = {
   bogo: false,         // Buy 1 Get 1 FREE offer
   whatsapp: "918227010433",   // order isi number par jayega
   adminPin: "878024",           // Owner panel ka PIN
+  upi: "rohitray8june-3@okicici",   // UPI ID (UPI on delivery ke liye)
   sheetUrl: "",               // Google Sheet web-app URL (Owner Panel se set karein)
-  version: "2.4.0"
+  version: "2.6.0"
 };
 
 var STEPS = ["Order Placed", "Confirmed", "Packed", "Out for Delivery", "Delivered"];
@@ -995,7 +1019,28 @@ function pickPay(m){
   payMode=m;
   var opts=document.querySelectorAll('.pay-opt');
   for(var i=0;i<opts.length;i++) opts[i].classList.toggle('sel', opts[i].getAttribute('data-pay')===m);
+  var ub=$('upiBox'); if(ub) ub.style.display = (m==='upi') ? 'block' : 'none';
 }
+function openUPIApp(){
+  if(!CONFIG.upi){ toast('UPI ID set nahi hai'); return; }
+  var amt = lineTotal(qty);
+  var url = 'upi://pay?pa=' + encodeURIComponent(CONFIG.upi) +
+            '&pn=' + encodeURIComponent(CONFIG.brand) +
+            '&am=' + amt + '&cu=INR&tn=' + encodeURIComponent('Mine Ultra Wash ' + qty + ' pack');
+  try{
+    var a=document.createElement('a');
+    a.href=url; a.rel='noopener';
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ try{ document.body.removeChild(a); }catch(e){} }, 800);
+  }catch(e){
+    try{ window.location.href=url; }catch(e2){ toast('UPI app nahi khula'); }
+  }
+}
+function openImage(){
+  var img=$('imgBig'); if(img) img.src = PACK;
+  $('imgBg').classList.add('open');
+}
+function closeImage(){ $('imgBg').classList.remove('open'); }
 function markField(id, ok){
   $(id).classList.toggle('err', !ok);
   return ok;
