@@ -571,7 +571,7 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
       </div>
 
       <button class="btn btn-wa" style="width:100%;margin-bottom:12px" onclick="openWA('Namaste BM Group of India, mujhe Mine Ultra Wash ka wholesale / bag rate jaanna hai.')">Wholesale rate poochhein</button>
-      <div class="ver" id="verAbout">BM Group of India · v2.2.0</div>
+      <div class="ver" id="verAbout">BM Group of India · v2.3.0</div>
     </div>
   </section>
 
@@ -618,7 +618,6 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
         </button>
       </div>
 
-      <button class="btn btn-ghost" style="width:100%" onclick="askPin()">Owner / Admin Login</button>
       <div class="ver" id="verHelp">BM Group of India · v1.0.0</div>
     </div>
   </section>
@@ -826,7 +825,7 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
     <div class="pin-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2.5"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
     <h3>Owner Login</h3>
     <p>Owner PIN dalein</p>
-    <input id="pinInput" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off">
+    <input id="pinInput" type="password" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="off">
     <div class="pin-err" id="pinErr">Galat PIN — dobara try karein</div>
     <div style="display:flex;gap:9px;margin-top:14px">
       <button class="btn btn-ghost" onclick="closePin()">Cancel</button>
@@ -871,9 +870,9 @@ var CONFIG = {
   mrp: 0,              // MRP (₹) — 0 rakhein to MRP nahi dikhega
   bogo: false,         // Buy 1 Get 1 FREE offer
   whatsapp: "918227010433",   // order isi number par jayega
-  adminPin: "1234",           // Owner panel ka PIN
+  adminPin: "878024",           // Owner panel ka PIN
   sheetUrl: "",               // Google Sheet web-app URL (Owner Panel se set karein)
-  version: "2.2.0"
+  version: "2.3.0"
 };
 
 var STEPS = ["Order Placed", "Confirmed", "Packed", "Out for Delivery", "Delivered"];
@@ -1276,7 +1275,7 @@ function clearOrders(){
 $('brandTap').addEventListener('click', function(){
   brandTaps++;
   clearTimeout(tapTimer);
-  tapTimer = setTimeout(function(){ brandTaps=0; }, 1400);
+  tapTimer = setTimeout(function(){ brandTaps=0; }, 1600);
   if(brandTaps>=5){ brandTaps=0; askPin(); }
 });
 
@@ -1375,7 +1374,7 @@ function copyCode(){
   try{ if(sessionStorage.getItem('bm_admin')==='1') adminOn=true; }catch(e){}
   var pi=document.getElementById('pinInput');
   if(pi){
-    pi.addEventListener('input', function(){ this.value=this.value.replace(/\D/g,'').slice(0,4); });
+    pi.addEventListener('input', function(){ this.value=this.value.replace(/\D/g,'').slice(0,6); });
     pi.addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
   }
   var cb=document.getElementById('codeBox'); if(cb) cb.textContent = SHEET_CODE;
