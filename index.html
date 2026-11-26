@@ -62,13 +62,13 @@ input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
 .topbar{position:sticky;top:0;z-index:40;background:linear-gradient(135deg,#0A2F80,#124FBE 55%,#1E63D8);
   color:#fff;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 12px;
   border-radius:0 0 20px 20px;box-shadow:0 8px 24px rgba(7,23,51,.32);border-bottom:1px solid rgba(212,175,55,.38)}
-.tb-row{display:flex;align-items:center;gap:11px}
-.tb-logo{width:40px;height:40px;flex:0 0 auto;display:grid;place-items:center;filter:drop-shadow(0 3px 8px rgba(0,0,0,.28))}
+.tb-row{display:flex;align-items:center;gap:8px}
+.tb-logo{width:36px;height:36px;flex:0 0 auto;display:grid;place-items:center;filter:drop-shadow(0 3px 8px rgba(0,0,0,.28))}
 .tb-logo img{width:100%;height:100%;object-fit:contain}
 .tb-txt{flex:1;min-width:0}
-.tb-brand{font-size:14.5px;font-weight:800;letter-spacing:.09em;line-height:1.15;text-transform:uppercase}
+.tb-brand{font-size:12.5px;font-weight:800;letter-spacing:.06em;line-height:1.2;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tb-tag{font-size:10.5px;color:#BBD2FF;letter-spacing:.06em;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tb-btn{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:0 0 auto}
+.tb-btn{width:35px;height:35px;border-radius:11px;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:0 0 auto}
 .tb-btn:active{background:rgba(255,255,255,.3)}
 
 /* ---------- generic ---------- */
@@ -347,6 +347,59 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
   border-radius:50%;background:rgba(255,255,255,.18);color:#fff;display:grid;place-items:center;font-size:16px}
 .img-tip{position:absolute;bottom:calc(22px + var(--safe-b));left:0;right:0;text-align:center;color:#9FB6D8;
   font-size:11px;font-weight:600;letter-spacing:.04em}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}
+.cf{position:absolute;width:9px;height:14px;border-radius:2px;opacity:.95;animation:fall linear forwards}
+@keyframes fall{0%{transform:translateY(-10vh) rotate(0);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:.85}}
+
+body.dark{--bg:#0A1120;--card:#131C2E;--ink:#E9EFFA;--muted:#8FA1BC;--line:#22304A;
+  --shadow:0 10px 28px rgba(0,0,0,.4)}
+body.dark #shell{background:var(--bg)}
+body.dark .card{background:linear-gradient(180deg,#141E33,#111A2C);border-color:rgba(255,255,255,.06);box-shadow:0 10px 28px rgba(0,0,0,.35)}
+body.dark .feat{background:linear-gradient(180deg,#141E33,#111A2C);border-color:rgba(255,255,255,.06)}
+body.dark .prod-img{background:radial-gradient(circle at 50% 45%,#1B2942,#131E33)}
+body.dark .trust{background:#131C2E;border-color:rgba(212,175,55,.22)}
+body.dark .trust div+div:before{background:linear-gradient(180deg,transparent,rgba(255,255,255,.12),transparent)}
+body.dark .feat small,body.dark .step small,body.dark .prod-meta,body.dark .price-note,body.dark .sum-row,
+body.dark .sec-title span,body.dark .tl-item small,body.dark .order-b .t small{color:#8FA1BC}
+body.dark .feat b,body.dark .step b,body.dark .order-b .t b,body.dark .sum-row b{color:#E9EFFA}
+body.dark .field input,body.dark .field textarea{background:#0F1729;color:#E9EFFA;border-color:#22304A}
+body.dark .field label{color:#9FB0C9}
+body.dark .sheet,body.dark .sheet-head{background:#0A1120}
+body.dark .summary,body.dark .order,body.dark .steps,body.dark .tl{background:#131C2E}
+body.dark .pay-opt{background:#131C2E;border-color:#22304A}
+body.dark .pay-opt.sel{background:#16233B;border-color:#3E86FF}
+body.dark .btn-ghost{background:#16233B;color:#9FC0FF;border-color:#22304A}
+body.dark .stickybar-in{background:#131C2E;border-color:#22304A}
+body.dark .tabbar{background:rgba(10,17,32,.97);border-color:#22304A}
+body.dark .admin-note{background:#131C2E;color:#8FA1BC;border-color:#22304A}
+body.dark .ins-card,body.dark .pin-card{background:#0F1729}
+body.dark #success{background:#0A1120}
+body.dark .install-tip{background:#132038;border-color:#22304A;color:#9FC0FF}
+body.dark .empty .ico{background:#16233B;color:#5B6E8C}
+body.dark .stepper{background:#16233B}
+body.dark .stepper span{color:#E9EFFA}
+body.dark .stepper button{color:#8FB4FF}
+body.dark .qty-lab{color:#8FA1BC}
+body.dark .rating{background:#12341F;color:#6EE7A0}
+body.dark .price{color:#fff}
+body.dark .prod-name{color:#fff}
+body.dark .chip{background:linear-gradient(135deg,#3A3013,#4A3C17);color:#F5DFA0;border-color:rgba(212,175,55,.45)}
+body.dark .free-line{background:#12341F;color:#6EE7A0}
+body.dark .trust small{color:#8FA1BC}
+body.dark .card p,body.dark .card small,body.dark .card li,body.dark .card ol{color:#A9B9D2 !important}
+body.dark .link{color:#7FB0FF}
+body.dark .about-p{color:#A9B9D2}
+body.dark .x{background:#16233B}
+body.dark .grab{background:#2A3A55}
+body.dark .stat{background:#131C2E}
+body.dark select.stat-sel{background:#0F1729;color:#E9EFFA;border-color:#22304A}
+body.dark .code{background:#060C18}
+body.dark .gstep{color:#A9B9D2}
+body.dark .gstep b{color:#E9EFFA}
+body.dark .succ-top{background:linear-gradient(160deg,#0F7A43,#0A5730)}
 .preview-note{position:fixed;left:50%;transform:translateX(-50%);top:0;width:100%;max-width:480px;z-index:95;
   background:#FFC72C;color:#3A2600;font-size:11px;font-weight:800;padding:9px 14px;text-align:center;line-height:1.35}
 .preview-note span{display:block;font-weight:600;font-size:10.5px;opacity:.85;margin-top:1px}
@@ -374,6 +427,12 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
         <div class="tb-brand" id="tbBrand">BM Group of India</div>
         <div class="tb-tag" id="tbTag">Mine Ultra Wash · 1 kg Pack</div>
       </div>
+      <button class="tb-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Theme">
+        <svg id="themeIcon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+      <button class="tb-btn" onclick="shareApp()" aria-label="Share">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+      </button>
       <button class="tb-btn" onclick="openWA('')" aria-label="WhatsApp">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.4 0-.1-.2-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.2-1.3c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.9-1.4-1.4-3-1.4-4.7C3.4 7.2 7.2 3.4 12 3.4S20.6 7.2 20.6 12 16.8 20.2 12 20.2z"/></svg>
       </button>
@@ -591,7 +650,7 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
       </div>
 
       <button class="btn btn-wa" style="width:100%;margin-bottom:12px" onclick="openWA('Namaste BM Group of India, mujhe Mine Ultra Wash ka wholesale / bag rate jaanna hai.')">Wholesale rate poochhein</button>
-      <div class="ver" id="verAbout">BM Group of India · v2.6.0</div>
+      <div class="ver" id="verAbout">BM Group of India · v2.7.0</div>
     </div>
   </section>
 
@@ -874,6 +933,8 @@ select.stat-sel{width:100%;padding:9px 10px;border-radius:10px;border:1.5px soli
   </div>
 </div>
 
+<div id="confetti"></div>
+
 <div class="img-bg" id="imgBg" onclick="if(event.target===this)closeImage()">
   <button class="img-close" onclick="closeImage()">✕</button>
   <img id="imgBig" alt="Mine Ultra Wash">
@@ -907,7 +968,7 @@ var CONFIG = {
   adminPin: "878024",           // Owner panel ka PIN
   upi: "rohitray8june-3@okicici",   // UPI ID (UPI on delivery ke liye)
   sheetUrl: "",               // Google Sheet web-app URL (Owner Panel se set karein)
-  version: "2.6.0"
+  version: "2.7.0"
 };
 
 var STEPS = ["Order Placed", "Confirmed", "Packed", "Out for Delivery", "Delivered"];
@@ -1104,12 +1165,13 @@ function testSheet(){
 function showSuccess(o){
   $('succId').textContent = o.id;
   $('succSummary').innerHTML =
-    '<div class="sum-row"><span>' + esc(o.product) + ' × ' + o.qty + ' <span style="color:#128C4A;font-weight:800">(+' + (o.packs-o.qty) + ' FREE)</span></span><span><b>' + money(o.amount) + '</b></span></div>' +
+    '<div class="sum-row"><span>' + esc(o.product) + ' × ' + o.qty + (o.packs>o.qty ? ' <span style="color:#128C4A;font-weight:800">(+' + (o.packs-o.qty) + ' FREE)</span>' : '') + '</span><span><b>' + money(o.amount) + '</b></span></div>' +
     '<div class="sum-row"><span>Payment</span><b>' + esc(o.pay) + '</b></div>' +
     '<div class="sum-row"><span>Deliver to</span><b style="text-align:right;max-width:60%">' + esc(o.name) + '<br><span style="font-weight:600;color:#6B7A90;font-size:11px">' + esc(o.addr) + (o.city? ', '+esc(o.city):'') + ' - ' + esc(o.pin) + '</span></b></div>' +
     '<div class="sum-row"><span>Mobile</span><b>+91 ' + esc(o.phone) + '</b></div>';
   $('success').classList.add('show');
   document.body.style.overflow='hidden';
+  fireConfetti();
   // auto-open WhatsApp once (order reaches owner instantly)
   setTimeout(function(){ sendOrderWA(true); }, 300);
 }
@@ -1335,6 +1397,71 @@ $('brandTap').addEventListener('click', function(){
   if(brandTaps>=5){ brandTaps=0; askPin(); }
 });
 
+/* ---------- theme ---------- */
+function applyTheme(dark){
+  document.body.classList.toggle('dark', !!dark);
+  var ic=$('themeIcon');
+  if(ic){
+    ic.innerHTML = dark
+      ? '<circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'
+      : '<path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>';
+  }
+  var meta=document.querySelector('meta[name=theme-color]');
+  if(meta) meta.setAttribute('content', dark ? '#0A1120' : '#0B3FA8');
+  try{ localStorage.setItem('bm_theme', dark ? 'dark' : 'light'); }catch(e){}
+}
+function toggleTheme(){
+  var dark = !document.body.classList.contains('dark');
+  applyTheme(dark);
+  toast(dark ? 'Dark mode on' : 'Light mode on');
+}
+
+/* ---------- share ---------- */
+function appLink(){ return location.href.split('#')[0].split('?')[0]; }
+function shareApp(){
+  var url = appLink();
+  var text = 'BM Group of India — Mine Ultra Wash detergent powder, Rs ' + CONFIG.price + ' per ' + CONFIG.pack + '. Order online:';
+  if(navigator.share){
+    navigator.share({ title:'BM Group of India', text:text, url:url }).catch(function(){});
+    return;
+  }
+  goWA(text + ' ' + url);
+}
+
+/* ---------- confetti ---------- */
+function fireConfetti(){
+  var box=$('confetti'); if(!box) return;
+  var colors=['#D4AF37','#F5DFA0','#1B63E8','#E11D2E','#FFFFFF','#2E9E5B'];
+  box.innerHTML='';
+  for(var i=0;i<48;i++){
+    var s=document.createElement('div');
+    s.className='cf';
+    s.style.left=(Math.random()*100)+'%';
+    s.style.top='-20px';
+    s.style.background=colors[Math.floor(Math.random()*colors.length)];
+    s.style.animationDuration=(1.6+Math.random()*1.4)+'s';
+    s.style.animationDelay=(Math.random()*0.5)+'s';
+    s.style.width=(6+Math.random()*7)+'px';
+    s.style.height=(9+Math.random()*10)+'px';
+    s.style.opacity=0.55+Math.random()*0.45;
+    box.appendChild(s);
+  }
+  setTimeout(function(){ box.innerHTML=''; }, 3600);
+}
+
+/* ---------- reveal on scroll ---------- */
+function initReveal(){
+  if(!('IntersectionObserver' in window)) return;
+  var els=document.querySelectorAll('.card, .feat, .trust, .steps, .install-bar, .sec-title');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin:'0px 0px -40px 0px', threshold:0.04 });
+  for(var i=0;i<els.length;i++){ els[i].classList.add('reveal'); io.observe(els[i]); }
+  setTimeout(function(){ for(var i=0;i<els.length;i++) els[i].classList.add('in'); }, 2500);
+}
+
 /* ---------- install (PWA) ---------- */
 var deferredPrompt=null;
 window.addEventListener('beforeinstallprompt', function(e){
@@ -1416,6 +1543,12 @@ function copyCode(){
 /* ---------- boot ---------- */
 (function boot(){
   loadCfg();
+  try{
+    var th=localStorage.getItem('bm_theme');
+    if(th==='dark') applyTheme(true);
+    else if(!th && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme(true);
+  }catch(e){}
+  setTimeout(initReveal, 60);
   try{
     if(isInstalled() || localStorage.getItem('bm_install_hide')==='1'){
       var ib=document.getElementById('installBar'); if(ib) ib.style.display='none';
